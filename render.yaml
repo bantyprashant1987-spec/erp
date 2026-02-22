@@ -22,7 +22,7 @@ services:
       - key: CORS_ORIGINS
         value: https://erp-frontend.onrender.com
 
-  - type: static
+  - type: static_site
     name: erp-frontend
     buildCommand: "cd frontend && npm install && npm run build"
     staticPublishPath: frontend/dist
