@@ -39,3 +39,9 @@ FastAPI + PostgreSQL + React (Vite) full-stack billing/inventory starter with JW
 - Tables auto-created on startup; default owner seeded from `ADMIN_EMAIL`/`ADMIN_PASSWORD`.
 - Nginx proxies `/api` to backend container.
 - For production, set strong `SECRET_KEY`, tighten CORS, and place services on private network.
+
+## Deploy to Render
+1) Push main to GitHub, then in Render choose **New > Blueprint** and point to this repo; Render will read [render.yaml](render.yaml) to create backend, frontend, and Postgres.
+2) After provisioning, edit environment variables: set a long `SECRET_KEY`, change `ADMIN_PASSWORD`, set `CORS_ORIGINS` to your frontend Render URL, and set the frontend `VITE_API_URL` to your backend URL with `/api` suffix.
+3) Blueprint creates a managed Postgres (`erp-db`); `DATABASE_URL` is injected automatically. No `.env` files are needed on Render.
+4) First login uses the owner credentials you set in env vars. Health check: `/health` on backend.
